@@ -1,0 +1,59 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+body {
+  background-color: #32373c;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-family: "MedievalSharp", Sans-serif;
+  color: #828282;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+  color: #828282;
+}
+
+input[type="text"] {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+button[type="button"] {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #A10000;
+  color: #828282;
+  cursor: pointer;
+}
+
+button[type="button"]:hover {
+  background-color: #D23939;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  margin: 0 auto;
+}
