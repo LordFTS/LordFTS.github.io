@@ -9,12 +9,28 @@ getNFTsBtn.addEventListener("click", async () => {
     const nftCollection = await getUserNFTs(walletAddress);
     console.log(nftCollection);
 
-    // Display the user's NFTs in the grid
-    displayNFTs(nftCollection, nftGrid);
-  } else {
-    console.log("Please enter a wallet address.");
+   function displayNFTs(nftCollection, nftGrid) {
+  // Clear the existing NFT grid
+  nftGrid.innerHTML = '';
+
+  // Iterate over the NFT collection and create HTML elements to display each NFT
+  for (const nft of nftCollection) {
+    const nftElement = document.createElement('div');
+    nftElement.classList.add('nft');
+
+    const nftImage = document.createElement('img');
+    nftImage.src = nft.image;
+    nftImage.alt = nft.name;
+
+    const nftName = document.createElement('p');
+    nftName.textContent = nft.name;
+
+    nftElement.appendChild(nftImage);
+    nftElement.appendChild(nftName);
+
+    nftGrid.appendChild(nftElement);
   }
-});
+}
 
 // Retrieve the user's NFT collection
 async function getUserNFTs(walletAddress) {
