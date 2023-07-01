@@ -29,5 +29,28 @@ function displayNFTs(nftCollection, container) {
   });
 }
 
-async function getUser
+async function getUserNFTs(walletAddress) {
+  try {
+    const contractABIResponse = await fetch("eyewrap_abi.json");
+    const contractABI = await contractABIResponse.json();
 
+    const web3 = new Web3(Web3.givenProvider);
+    const contractAddress = "0x5779Ab0e844fC3785fAB17867B8B67bC4ff7A37B";
+    const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+
+    const tokenIdsResponse = await contractInstance.methods.getTokenIdsByOwner(walletAddress).call();
+    const tokenIds = tokenIdsResponse.result;
+
+    const nftCollection = [];
+
+    for (const tokenId of tokenIds) {
+      const tokenURI = await contractInstance.methods.tokenURI(tokenId).call();
+      nftCollection.push({ tokenId, tokenURI });
+    }
+
+    return nftCollection;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
