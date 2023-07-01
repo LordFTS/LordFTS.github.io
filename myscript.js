@@ -35,7 +35,7 @@ async function getUserNFTs(walletAddress) {
     const contractABI = await contractABIResponse.json();
 
     const web3 = new Web3(Web3.givenProvider);
-    const contractAddress = "0x5779Ab0e844fC3785fAB17867B8B67bC4ff7A37B";
+    const contractAddress = "0x45408Ce844d0bf5061e9B25C2924aaDe4DF884b3";
     const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
     const tokenIdsResponse = await contractInstance.methods.getTokenIdsByOwner(walletAddress).call();
