@@ -43,7 +43,7 @@ button[type="button"] {
   border-radius: 5px;
   border: none;
   background-color: #A10000;
-  color: #828282;
+  color: #000000;
   cursor: pointer;
 }
 
@@ -51,6 +51,9 @@ button[type="button"]:hover {
   background-color: #D23939;
 }
 
+button[type="button"]:click {
+  background-color: #D23939;
+}
 .nft-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
