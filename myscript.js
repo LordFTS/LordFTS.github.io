@@ -32,11 +32,15 @@ function displayNFTs(nftCollection, container) {
 async function getUserNFTs(walletAddress) {
   const nftCollection = [];
   const nftContracts = [
-    { address: "0x45408Ce844d0bf5061e9B25C2924aaDe4DF884b3", abi: [...] },
+    { address: "0x45408Ce844d0bf5061e9B25C2924aaDe4DF884b3", abi: null },
     // Add more contracts here
   ];
   for (const contract of nftContracts) {
-    const nftContract = new web3.eth.Contract(contract.abi, contract.address);
+    const response = await fetch("eyewrap_abi.json");
+    const abi = await response.json();
+    contract.abi = abi;
+    
+    const nftContract = new web3.eth.Contract(abi, contract.address);
     const userNFTs = await nftContract.methods.getNFTCollection(walletAddress).call();
     nftCollection.push(...userNFTs);
   }
