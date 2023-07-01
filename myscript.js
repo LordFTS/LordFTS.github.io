@@ -9,27 +9,22 @@ getNFTsBtn.addEventListener("click", async () => {
     const nftCollection = await getUserNFTs(walletAddress);
     console.log(nftCollection);
 
-   function displayNFTs(nftCollection, nftGrid) {
-  // Clear the existing NFT grid
-  nftGrid.innerHTML = '';
+function displayNFTs(nftCollection, container) {
+  container.innerHTML = ""; // Clear the container
 
-  // Iterate over the NFT collection and create HTML elements to display each NFT
-  for (const nft of nftCollection) {
-    const nftElement = document.createElement('div');
-    nftElement.classList.add('nft');
+  nftCollection.forEach((nft) => {
+    const nftElement = document.createElement("div");
+    nftElement.classList.add("nft");
 
-    const nftImage = document.createElement('img');
-    nftImage.src = nft.image;
-    nftImage.alt = nft.name;
+    // Create an image element for each NFT and set the source to the tokenURI
+    const imageElement = document.createElement("img");
+    imageElement.src = nft.tokenURI;
+    imageElement.alt = "NFT Image";
+    nftElement.appendChild(imageElement);
 
-    const nftName = document.createElement('p');
-    nftName.textContent = nft.name;
-
-    nftElement.appendChild(nftImage);
-    nftElement.appendChild(nftName);
-
-    nftGrid.appendChild(nftElement);
-  }
+    // Append the NFT element to the container
+    container.appendChild(nftElement);
+  });
 }
 
 // Retrieve the user's NFT collection
